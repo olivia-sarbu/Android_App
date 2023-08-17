@@ -67,6 +67,18 @@ public class MainActivity extends AppCompatActivity {
 
         getData();
 
+        binding.facturiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    startActivity(new Intent(MainActivity.this, Bills.class));
+                }
+                catch (Exception e){
+
+                }
+            }
+        });
+
     }
 
     private void getData() {
