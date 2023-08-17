@@ -97,7 +97,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/add_transaction_btn"
+            android:id="@+id/add_bill_btn"
             android:layout_marginTop="290dp"
             android:text="Adăugare"
             android:layout_width="match_parent"

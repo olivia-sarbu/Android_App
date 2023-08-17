@@ -91,6 +91,8 @@ public class AddNewTransaction extends AppCompatActivity {
                                 Toast.makeText(AddNewTransaction.this, "Adaugat", Toast.LENGTH_SHORT).show();
                                 binding.categorie.setText("");
                                 binding.sumaBani.setText("");
+                                binding.nota.setText("");
+                                binding.data.setText("");
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
