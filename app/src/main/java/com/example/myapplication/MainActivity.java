@@ -79,6 +79,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        binding.refreshPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    startActivity(new Intent(MainActivity.this, MainActivity.class));
+                    finish();
+                }catch (Exception e){
+
+                }
+            }
+        });
+
     }
 
     private void getData() {

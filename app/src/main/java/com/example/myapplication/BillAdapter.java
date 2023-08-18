@@ -5,9 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +27,10 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
 
     public void updateData(List<BillModel> newData) {
         billList.clear();
+       // notifyDataSetChanged();
         billList.addAll(newData);
         notifyDataSetChanged();
+
     }
 
     @NonNull
@@ -43,6 +48,24 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
         holder.suma_plata.setText(model.getSuma_plata());
         holder.termen_limita.setText(model.getTermen_limita());
         //holder.data_notificare.setText(model.getData_notificare());
+
+        holder.delete_record.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                FirebaseFirestore.getInstance()
+                        .collection("Facturi")
+                        .document(model.getId())
+                        .delete()
+                        .addOnSuccessListener(aVoid -> {
+                            billList.remove(holder.getAdapterPosition());
+                            notifyDataSetChanged();
+                        })
+                        .addOnFailureListener(e -> {
+                        });
+            }
+        });
+
     }
 
     @Override
@@ -53,6 +76,7 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView categorie_factura, suma_plata, termen_limita, data_notificare;
+        View delete_record;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,6 +84,8 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.MyViewHolder> 
             suma_plata=itemView.findViewById(R.id.suma_plata_factura);
             termen_limita=itemView.findViewById(R.id.termen_limita);
             //data_notificare=itemView.findViewById(R.id.data_notificare);
+            delete_record=itemView.findViewById(R.id.delete_record);
+
         }
     }
 }

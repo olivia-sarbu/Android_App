@@ -4,8 +4,17 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.core.widget.NestedScrollView
+    <View
         android:layout_marginTop="20dp"
+        android:id="@+id/refresh_page"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="310dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/baseline_refresh_24" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_width="match_parent"

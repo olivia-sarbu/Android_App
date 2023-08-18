@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,6 +36,19 @@ public class Bills extends AppCompatActivity {
 
         firebaseFirestore=FirebaseFirestore.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
+        /*firebaseAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if(firebaseAuth.getCurrentUser()!=null){
+                    try{
+                        startActivity(new Intent(Bills.this, MainActivity.class));
+                        finish();
+                    }catch (Exception e){
+
+                    }
+                }
+            }
+        });*/
         billModelList=new ArrayList<>();
 
         binding.billsRecycler.setLayoutManager(new LinearLayoutManager(this));
@@ -46,6 +61,18 @@ public class Bills extends AppCompatActivity {
                     startActivity(new Intent(Bills.this, BillCategory.class));
                 }
                 catch (Exception e){
+
+                }
+            }
+        });
+
+        binding.refreshPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    startActivity(new Intent(Bills.this, Bills.class));
+                    finish();
+                }catch (Exception e){
 
                 }
             }
@@ -77,12 +104,16 @@ public class Bills extends AppCompatActivity {
                     if (billAdapter == null) {
                         billAdapter = new BillAdapter(Bills.this, billModelList);
                         binding.billsRecycler.setAdapter(billAdapter);
+
                     } else {
-                        billAdapter.updateData(billModelList);
+                        //binding.billsRecycler.removeAllViews();
+                        //billAdapter.updateData(billModelList);
+                        billAdapter.notifyDataSetChanged();
                     }
                 })
                 .addOnFailureListener(e -> {
                     // Handle the failure to retrieve data
                 });
     }
+
 }

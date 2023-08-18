@@ -10,7 +10,16 @@
     tools:context=".MainActivity"
     android:backgroundTint="#F6F2F2">
 
+    <View
+        android:id="@+id/refresh_page"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="290dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/baseline_refresh_24" />
+
     <androidx.cardview.widget.CardView
+        android:layout_below="@+id/refresh_page"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="100dp">
