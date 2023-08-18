@@ -1,8 +1,9 @@
 package com.example.myapplication;
 
-import android.content.Intent;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -27,6 +31,9 @@ public class BillCategory extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 
+    private EditText termenLimita, dataNotificare;
+    private Calendar calendarLimita, calendarNotificare;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +42,13 @@ public class BillCategory extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+        termenLimita =findViewById(R.id.termen_limita);
+        dataNotificare=findViewById(R.id.data_notificare);
+        calendarLimita=Calendar.getInstance();
+        calendarNotificare=Calendar.getInstance();
+
+        termenLimita.setOnClickListener(view -> displayCalendarTermenLimita());
+        dataNotificare.setOnClickListener(view -> displayCalendarDataNotificare());
 
         binding.addBillBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +92,40 @@ public class BillCategory extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void displayCalendarDataNotificare() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, year, monthOfYear, dayOfMonth) -> {
+                    calendarNotificare.set(year, monthOfYear, dayOfMonth);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    String selectedDate = sdf.format(calendarNotificare.getTime());
+                    dataNotificare.setText(selectedDate);
+                },
+                calendarNotificare.get(Calendar.YEAR),
+                calendarNotificare.get(Calendar.MONTH),
+                calendarNotificare.get(Calendar.DAY_OF_MONTH)
+        );
+
+        datePickerDialog.show();
+    }
+
+    private void displayCalendarTermenLimita() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, year, monthOfYear, dayOfMonth) -> {
+                    calendarLimita.set(year, monthOfYear, dayOfMonth);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                    String selectedDate = sdf.format(calendarLimita.getTime());
+                    termenLimita.setText(selectedDate);
+                },
+                calendarLimita.get(Calendar.YEAR),
+                calendarLimita.get(Calendar.MONTH),
+                calendarLimita.get(Calendar.DAY_OF_MONTH)
+        );
+
+        datePickerDialog.show();
     }
 
 

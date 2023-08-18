@@ -59,4 +59,10 @@
 
     </androidx.cardview.widget.CardView>
 
+    <Button
+        android:id="@+id/send_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sendNotif"/>
+
 </RelativeLayout>

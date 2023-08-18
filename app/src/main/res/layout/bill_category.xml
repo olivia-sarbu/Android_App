@@ -71,7 +71,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textSize="16dp">
+                    android:textSize="16dp"
+                    android:focusable="false">
                 </EditText>
             </LinearLayout>
 
@@ -90,7 +91,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textSize="16dp">
+                    android:textSize="16dp"
+                    android:focusable="false">
                 </EditText>
             </LinearLayout>
 

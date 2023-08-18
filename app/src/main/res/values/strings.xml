@@ -32,6 +32,7 @@
         <item>Utilitati</item>
         <item>Economii</item>
     </string-array>
+    <string name="my_channel_id">my_channel_id</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
