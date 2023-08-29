@@ -1,4 +1,5 @@
 package com.example.myapplication;
+
 import static com.example.myapplication.Bills.billModelList;
 
 import android.app.NotificationChannel ;
@@ -14,6 +15,7 @@ import androidx.core.app.NotificationCompat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.Timer ;
 import java.util.TimerTask ;
 public class NotificationService extends Service {
@@ -44,12 +46,12 @@ public class NotificationService extends Service {
         stopTimerTask() ;
         super .onDestroy() ;
     }
-    //we are going to use a handler to be able to run in our TimerTask
+
     final Handler handler = new Handler() ;
     public void startTimer () {
         timer = new Timer() ;
         initializeTimerTask() ;
-        timer.schedule( timerTask , 5000 , 24*60*60*1000) ;
+        timer.schedule( timerTask , 10000 , 24*60*60*1000) ;
     }
     public void stopTimerTask () {
         if ( timer != null ) {
@@ -58,8 +60,8 @@ public class NotificationService extends Service {
         }
     }
 
-    int notificationHour = 20;
-    int notificationMinute = 36;
+    int notificationHour = 11;
+    int notificationMinute = 57;
 
     public void initializeTimerTask () {
 
@@ -72,26 +74,16 @@ public class NotificationService extends Service {
             public void run () {
                 handler .post( new Runnable() {
                     public void run () {
-                        Calendar calendar = Calendar.getInstance();
-                        int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
-                        int currentMinute = calendar.get(Calendar.MINUTE);
-
-                        if (currentHour > notificationHour ||
-                                (currentHour == notificationHour && currentMinute >= notificationMinute)) {
-                            calendar.add(Calendar.DAY_OF_YEAR, 1); // Schedule for the next day
-                        }
-                        calendar.set(Calendar.HOUR_OF_DAY, notificationHour);
-                        calendar.set(Calendar.MINUTE, notificationMinute);
-                        calendar.set(Calendar.SECOND, 0);
-
-                        //long delay = calendar.getTimeInMillis() - System.currentTimeMillis();
-
-
-                        for (BillModel bill : billModelList) {
-                            String billDate = bill.getData_notificare();
-                            if (billDate != null) {
-                                if (billDate.equals(formattedDate)) {
-                                    createNotification();
+                        TimeZone timeZone = TimeZone.getTimeZone("Europe/Bucharest");
+                        Calendar currentTime = Calendar.getInstance(timeZone);
+                        if (currentTime.get(Calendar.HOUR_OF_DAY) == notificationHour &&
+                                currentTime.get(Calendar.MINUTE) == notificationMinute) {
+                            for (BillModel bill : billModelList) {
+                                String billDate = bill.getData_notificare();
+                                if (billDate != null) {
+                                    if (billDate.equals(formattedDate)) {
+                                        createNotification();
+                                    }
                                 }
                             }
                         }

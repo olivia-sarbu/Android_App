@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -39,7 +40,7 @@ import java.util.TimeZone;
 
 public class Bills extends AppCompatActivity {
 
-    private static final String CHANNEL_ID = "my_channel_id";
+
     private static final int REQUEST_CODE = 0;
     BillsBinding binding;
 
@@ -57,9 +58,10 @@ public class Bills extends AppCompatActivity {
         binding = BillsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //startService( new Intent( this, NotificationService.class )) ;
+
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-        createNotificationChannel();
 
         billModelList = new ArrayList<>();
         binding.billsRecycler.setLayoutManager(new LinearLayoutManager(this));
@@ -89,20 +91,6 @@ public class Bills extends AppCompatActivity {
         });
 
         getData();
-        //NotifyFunc();
-    }
-
-    private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(
-                    Bills.CHANNEL_ID,
-                    "My Notification Channel",
-                    NotificationManager.IMPORTANCE_HIGH
-            );
-
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel);
-        }
     }
 
     private void getData() {
@@ -135,49 +123,10 @@ public class Bills extends AppCompatActivity {
                 });
     }
 
-    /*void NotifyFunc() {
-        Date currentDate = new Date();
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-        String formattedDate = sdf.format(currentDate);
-
-        for (BillModel bill : billModelList) {
-            String billDate = bill.getData_notificare();
-            if (billDate != null) {
-                if (billDate.equals(formattedDate)) {
-                    sendNotification( "Reminder factura", "Termenul limita pentru factura se apropie!");
-                }
-            }
-        }
-    }*/
-
-    /*
-    @SuppressLint("MissingPermission")
-    void sendNotification(String bill_reminder, String s) {
-
-        Intent notificationIntent = new Intent(this, Bills.class);
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.baseline_notifications_24)
-                .setContentTitle(bill_reminder)
-                .setContentText(s)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true)
-                .setChannelId(Bills.CHANNEL_ID);
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-        notificationManager.notify(notificationId, builder.build());
-        notificationId++;
-    }*/
-
-    protected void onStop () {
-        super .onStop() ;
-        startService( new Intent( this, NotificationService. class )) ;
+    @Override
+    protected void onStop() {
+        super.onStop();
+        startService( new Intent( this, NotificationService.class )) ;
     }
 }
 

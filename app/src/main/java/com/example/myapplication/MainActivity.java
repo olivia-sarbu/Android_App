@@ -4,7 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -46,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+
         firebaseFirestore=FirebaseFirestore.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
         transModelArrayList=new ArrayList<>();
@@ -88,6 +95,29 @@ public class MainActivity extends AppCompatActivity {
                 }catch (Exception e){
 
                 }
+            }
+        });
+
+        binding.economiiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    startActivity(new Intent(MainActivity.this, Savings.class));
+                }
+                catch (Exception e){
+
+                }
+            }
+        });
+
+        binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                firebaseAuth.signOut();
+                Intent intent = new Intent(MainActivity.this, Login.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -134,5 +164,7 @@ public class MainActivity extends AppCompatActivity {
                     // Handle the failure to retrieve data
                 });
     }
+
+
 
 }
