@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_color">
 
     <View
         android:layout_marginTop="20dp"
@@ -18,7 +19,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
-        android:layout_height="490dp">
+        android:layout_height="490dp"
+        android:backgroundTint="#7FADBD">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bills_recycler"
             android:layout_width="match_parent"
@@ -27,10 +29,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/add_new_bill"
-        android:backgroundTint="#673AB7"
+        android:backgroundTint="#AAABB8"
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         app:cardCornerRadius="20dp"
         android:layout_centerInParent="true"
         android:layout_marginBottom="15dp">
@@ -50,8 +52,8 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/img_bill"
                 android:text="Adaugă factură nouă"
-                android:textSize="18sp"
-                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textColor="@color/background_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

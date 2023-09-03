@@ -5,7 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:contentPadding="10dp"
     android:layout_margin="4dp"
-    android:background="?selectableItemBackground">
+    android:background="?selectableItemBackground"
+    android:backgroundTint="#5A5A93"
+    app:cardCornerRadius="10dp">
     <View
         android:id="@+id/delete_record"
         android:layout_width="30dp"
@@ -28,19 +30,19 @@
                 android:layout_height="wrap_content"
                 android:text="Factura"
                 android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:textSize="16sp"/>
             <TextView
                 android:id="@+id/termen_limita"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Termen limită"
-                android:textSize="20sp"/>
+                android:textSize="16sp"/>
         </LinearLayout>
         <View
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="110dp"
-            android:layout_marginTop="23dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="18dp"
             android:background="@drawable/baseline_upcoming_24"/>
         <LinearLayout
             android:layout_centerVertical="true"
@@ -50,13 +52,13 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/suma_plata_factura"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:text="0.00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:text=" RON"
                 android:layout_width="wrap_content"

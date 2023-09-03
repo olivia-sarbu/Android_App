@@ -39,10 +39,8 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     FirebaseFirestore firebaseFirestore;
     FirebaseAuth firebaseAuth;
-
     ArrayList<ExpenseModel> transModelArrayList;
     ExpensesAdapter adapter;
-
     int totalVenit=0, totalCheltuieli=0;
 
     @Override
@@ -50,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
 
         firebaseFirestore=FirebaseFirestore.getInstance();
         firebaseAuth=FirebaseAuth.getInstance();
@@ -110,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
+        /*binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -118,6 +114,18 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, Login.class);
                 startActivity(intent);
                 finish();
+            }
+        });*/
+
+        binding.setariBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    startActivity(new Intent(MainActivity.this, Settings.class));
+                }
+                catch (Exception e){
+
+                }
             }
         });
 

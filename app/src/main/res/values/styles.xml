@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Add other theme attributes here if needed -->
         <item name="android:editTextStyle">@style/NoEditTextHighlight</item>
     </style>

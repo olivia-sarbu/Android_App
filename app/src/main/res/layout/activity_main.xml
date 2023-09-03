@@ -6,50 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    android:background="@color/white"
     tools:context=".MainActivity"
-    android:backgroundTint="#F6F2F2">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/logout_btn"
-        android:backgroundTint="#673AB7"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        app:cardCornerRadius="20dp"
-        android:padding="10dp">
-        <RelativeLayout
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
-            <TextView
-                android:layout_centerVertical="true"
-                android:text="Logout"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
+    android:background="@color/background_color">
 
     <View
         android:id="@+id/refresh_page"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="290dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/baseline_refresh_24" />
+        android:layout_marginLeft="310dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/baseline_refresh_24"
+        />
 
     <androidx.cardview.widget.CardView
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/refresh_page"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="#AAABB8">
         <LinearLayout
-
+            android:background="#AAABB8"
             android:padding="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -58,13 +36,15 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="Venit"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:textColor="@color/background_color"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/total_venit"
@@ -72,8 +52,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="000"
-                    android:textColor="#227525"
-                    android:textSize="20sp" />
+                    android:textColor="@color/notifications"
+                    android:textSize="16sp" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -81,7 +61,8 @@
                 <TextView
                     android:layout_alignParentLeft="true"
                     android:text="Cheltuieli"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
+                    android:textColor="@color/background_color"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -92,8 +73,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="000"
-                    android:textColor="#B51313"
-                    android:textSize="20sp" />
+                    android:textColor="@color/security"
+                    android:textSize="16sp" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -101,8 +82,9 @@
                 <TextView
                     android:layout_alignParentLeft="true"
                     android:text="Balanță"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
+                    android:textColor="@color/background_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
@@ -110,32 +92,45 @@
                     android:id="@+id/balanta_bani"
                     android:layout_alignParentRight="true"
                     android:text="000"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </RelativeLayout>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-    <androidx.core.widget.NestedScrollView
-        android:layout_marginTop="20dp"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_below="@id/card_view">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="180dp"
+        android:backgroundTint="#5A5A93"
+        >
+        <androidx.core.widget.NestedScrollView
+            android:background="#5A5A93"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+             android:layout_height="400dp"
+             android:layout_below="@id/card_view"
+            app:cardCornerRadius="10dp">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            app:cardCornerRadius="10dp"/>
 
     </androidx.core.widget.NestedScrollView>
-    
+    </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/add_button"
-        android:backgroundTint="#673AB7"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:backgroundTint="#AAABB8"
+        android:layout_marginTop="610dp"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         app:cardCornerRadius="20dp">
         <RelativeLayout
             android:gravity="center"
@@ -153,8 +148,8 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/img_transaction"
                 android:text="Tranzacție"
-                android:textSize="18sp"
-                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textColor="@color/background_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -162,57 +157,91 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/facturi_btn"
-        android:backgroundTint="#673AB7"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        app:cardCornerRadius="20dp">
-        <RelativeLayout
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
-            <TextView
-                android:layout_centerVertical="true"
-                android:text="Facturi"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
-        </RelativeLayout>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/facturi_btn"
+                android:backgroundTint="#AAABB8"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                app:cardCornerRadius="20dp">
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:text="Facturi"
+                        android:textSize="15sp"
+                        android:textColor="@color/background_color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/economii_btn"
-        android:backgroundTint="#673AB7"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        app:cardCornerRadius="20dp"
-        android:layout_marginLeft="85dp">
-        <RelativeLayout
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
-            <TextView
-                android:layout_centerVertical="true"
-                android:text="Economii"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            </androidx.cardview.widget.CardView>
 
-        </RelativeLayout>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/economii_btn"
+                android:backgroundTint="#AAABB8"
+                android:layout_alignParentBottom="true"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                app:cardCornerRadius="20dp"
+                android:layout_marginLeft="115dp">
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:text="Economii"
+                        android:textSize="15sp"
+                        android:textColor="@color/background_color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
 
-    </androidx.cardview.widget.CardView>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/setari_btn"
+                android:backgroundTint="#AAABB8"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="2dp"
+                app:cardCornerRadius="20dp"
+                android:padding="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true">
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:text="Setari"
+                        android:textSize="15sp"
+                        android:textColor="@color/background_color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+
 
 </RelativeLayout>

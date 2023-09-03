@@ -68,10 +68,10 @@ public class Register extends AppCompatActivity {
                 password=String.valueOf(editTextPassword.getText()).trim();
                 confPassword=String.valueOf(confirmPassword.getText()).trim();
 
-                if(TextUtils.isEmpty(email)){
+                if (email.trim().isEmpty()) {
                     Toast.makeText(Register.this, "Introduceti un email", Toast.LENGTH_SHORT).show();
                     return;
-                }else if(TextUtils.isEmpty(password)){
+                }else if (password.trim().isEmpty()) {
                     Toast.makeText(Register.this, "Introduceti o parola", Toast.LENGTH_SHORT).show();
                     return;
                 }else if(!email.matches(patternEmail)) {

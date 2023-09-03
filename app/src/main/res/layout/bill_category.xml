@@ -6,14 +6,17 @@
     android:layout_height="match_parent"
     android:padding="12dp"
     tools:context=".AddNewTransaction"
-    android:backgroundTint="#EFEAEA">
+    android:background="@color/background_color">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="50dp"
         app:contentPadding="12dp"
-        app:cardBackgroundColor="@color/white">
+        app:cardBackgroundColor="#5A5A93"
+        app:cardCornerRadius="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,11 +27,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:textColor="@color/educatie"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Categorie factură"
-                    android:textSize="20dp"/>
+                    android:textSize="16dp"/>
                 <EditText
                     android:id="@+id/categorie_factura"
                     android:layout_width="match_parent"
@@ -43,11 +46,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:textColor="@color/educatie"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sumă de plată"
-                    android:textSize="20dp"/>
+                    android:textSize="16dp"/>
                 <EditText
                     android:id="@+id/suma_plata"
                     android:layout_width="match_parent"
@@ -61,11 +64,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:textColor="@color/educatie"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Termen limită"
-                    android:textSize="20dp"/>
+                    android:textSize="16dp"/>
                 <EditText
                     android:id="@+id/termen_limita"
                     android:layout_width="match_parent"
@@ -81,11 +84,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:textColor="@color/educatie"
+                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dată de notificare"
-                    android:textSize="20dp"/>
+                    android:textSize="16dp"/>
                 <EditText
                     android:id="@+id/data_notificare"
                     android:layout_width="match_parent"
@@ -98,12 +101,32 @@
 
         </LinearLayout>
 
-        <Button
+        <androidx.cardview.widget.CardView
             android:id="@+id/add_bill_btn"
-            android:layout_marginTop="290dp"
-            android:text="Adăugare"
+            android:backgroundTint="#AAABB8"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="40dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginTop="260dp">
+            <RelativeLayout
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:text="Adăugare"
+                    android:textSize="15sp"
+                    android:textColor="@color/background_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </androidx.cardview.widget.CardView>
 

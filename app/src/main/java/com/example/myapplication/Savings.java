@@ -42,7 +42,7 @@ public class Savings extends AppCompatActivity {
         pieChart = findViewById(R.id.pieChart_savings);
         tinta_economii=findViewById(R.id.tinta_economii);
         economii_curente=findViewById(R.id.economii_curente);
-        BarChart barChart = findViewById(R.id.grafic_economii);
+        //BarChart barChart = findViewById(R.id.grafic_economii);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int savedEconomii = sharedPreferences.getInt("economii", 0);
@@ -97,15 +97,19 @@ public class Savings extends AppCompatActivity {
 
         try {
             int goalIntValue = Integer.parseInt(goalValue);
-            entries.add(new PieEntry(goalIntValue - currentEconomii, "Goal"));
+            entries.add(new PieEntry(goalIntValue - currentEconomii, "Țintă"));
         } catch (NumberFormatException e) {
             // Handle parsing error if needed
         }
 
+        int red = 114;
+        int green = 101;
+        int blue = 103;
+
         PieDataSet dataSet = new PieDataSet(entries, "");
         ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.BLUE); // Color for Segment 1
-        colors.add(Color.RED);  // Color for Segment 2
+        colors.add(Color.rgb(red, green, blue)); // Color for Segment 1
+        colors.add(Color.rgb(239, 234, 221));  // Color for Segment 2
         dataSet.setColors(colors);
 
         // Create pie data object

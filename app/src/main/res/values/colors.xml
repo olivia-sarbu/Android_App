@@ -15,5 +15,11 @@
     <color name="cadouri">#660000</color>
     <color name="divertisment">#006600</color>
 
+    <color name="background_color">#474787</color>
+    <color name="components_color">#AAABB8</color>
+    <color name="nigh_mode">#6124B1</color>
+    <color name="notifications">#13B2C3</color>
+    <color name="privacy">#E6A326</color>
+    <color name="security">#D95F69</color>
 
 </resources>

@@ -13,7 +13,6 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -31,22 +30,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    defaultConfig {
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-    defaultConfig {
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
     }
 }
 
 dependencies {
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espressocore:3.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.androidx.test:runner:1.0.2'
-    androidTestImplementation 'com.androidx.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:rules:1.4.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -63,4 +58,7 @@ dependencies {
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation "androidx.work:work-runtime:2.7.0"
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+    implementation 'com.google.android.material:material:1.2.0'
 }

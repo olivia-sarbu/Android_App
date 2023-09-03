@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_facturi"
+        android:title="Facturi"
+        android:icon="@drawable/invoice"/> <!-- Replace @drawable/ic_facturi with your icon resource -->
+    <item
+        android:id="@+id/action_economii"
+        android:title="Economii"
+        android:icon="@drawable/baseline_attach_money_24"/> <!-- Replace @drawable/ic_economii with your icon resource -->
+    <item
+        android:id="@+id/action_setari"
+        android:title="Setari"
+        android:icon="@drawable/baseline_settings_24"/> <!-- Replace @drawable/ic_setari with your icon resource -->
+</menu>
