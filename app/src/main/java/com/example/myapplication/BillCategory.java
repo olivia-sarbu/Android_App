@@ -127,6 +127,4 @@ public class BillCategory extends AppCompatActivity {
 
         datePickerDialog.show();
     }
-
-
 }

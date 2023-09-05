@@ -42,7 +42,6 @@ public class Savings extends AppCompatActivity {
         pieChart = findViewById(R.id.pieChart_savings);
         tinta_economii=findViewById(R.id.tinta_economii);
         economii_curente=findViewById(R.id.economii_curente);
-        //BarChart barChart = findViewById(R.id.grafic_economii);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int savedEconomii = sharedPreferences.getInt("economii", 0);
@@ -52,10 +51,8 @@ public class Savings extends AppCompatActivity {
         economii_curente.setText(String.valueOf(savedEconomii));
         tinta_economii.setText(savedGoalValue);
 
-        // Initialize pie chart with saved values
         updatePieChart(savedEconomii, savedGoalValue);
 
-        // Set a listener to save the entered value when it changes
         tinta_economii.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
@@ -65,7 +62,6 @@ public class Savings extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                // Save the current value to SharedPreferences
                 String currentValue = editable.toString();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("lastValue", currentValue);
@@ -80,10 +76,8 @@ public class Savings extends AppCompatActivity {
                 if (!newInput.isEmpty()) {
                     int newNumber = Integer.parseInt(newInput);
                     economii += newNumber;
-                    // Update the UI to display the new sum
                     economii_curente.setText(String.valueOf(economii));
 
-                    // Update pie chart entries and save updated values
                     updatePieChart(economii, tinta_economii.getText().toString());
                     saveData(economii, tinta_economii.getText().toString());
                 }
@@ -99,7 +93,7 @@ public class Savings extends AppCompatActivity {
             int goalIntValue = Integer.parseInt(goalValue);
             entries.add(new PieEntry(goalIntValue - currentEconomii, "Țintă"));
         } catch (NumberFormatException e) {
-            // Handle parsing error if needed
+
         }
 
         int red = 114;
@@ -108,21 +102,18 @@ public class Savings extends AppCompatActivity {
 
         PieDataSet dataSet = new PieDataSet(entries, "");
         ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.rgb(red, green, blue)); // Color for Segment 1
-        colors.add(Color.rgb(239, 234, 221));  // Color for Segment 2
+        colors.add(Color.rgb(red, green, blue));
+        colors.add(Color.rgb(239, 234, 221));
         dataSet.setColors(colors);
 
-        // Create pie data object
         PieData pieData = new PieData(dataSet);
         pieChart.setData(pieData);
 
-        // Optional: Customize chart appearance
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.setDrawHoleEnabled(false);
         pieChart.animateY(1000);
 
-        // Refresh chart
         pieChart.invalidate();
     }
 
@@ -133,14 +124,4 @@ public class Savings extends AppCompatActivity {
         editor.putString("goalValue", goalValue);
         editor.apply();
     }
-
-
-    private void saveData() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("economii", economii);
-        editor.putString("goalValue", tinta_economii.getText().toString());
-        editor.apply();
-    }
-
 }

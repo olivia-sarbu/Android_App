@@ -5,11 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -26,7 +24,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 
 public class AddNewTransaction extends AppCompatActivity {
@@ -38,6 +35,7 @@ public class AddNewTransaction extends AppCompatActivity {
     String tip_tranzactie="";
     Calendar calendar;
     EditText data_tranzactie_box;
+    String selectedItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +73,7 @@ public class AddNewTransaction extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String suma = binding.sumaBani.getText().toString().trim();
-                String categorie = binding.categorie.getText().toString().trim();
+                String categorie = selectedItem;
                 String nota = binding.nota.getText().toString().trim();
                 String data=binding.data.getText().toString().trim();
                 if (suma.length() <= 0) {
@@ -99,7 +97,7 @@ public class AddNewTransaction extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void unused) {
                                 Toast.makeText(AddNewTransaction.this, "Adaugat", Toast.LENGTH_SHORT).show();
-                                binding.categorie.setText("");
+                                binding.categorieSpinner.setSelection(-1);
                                 binding.sumaBani.setText("");
                                 binding.nota.setText("");
                                 binding.data.setText("");
@@ -111,6 +109,27 @@ public class AddNewTransaction extends AppCompatActivity {
                                 Toast.makeText(AddNewTransaction.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
+            }
+        });
+
+        final Spinner spinner = findViewById(R.id.categorie_spinner);
+        final String[] items = {"Nici o selectie", "Salariu", "Chirie", "Transport", "Mancare", "Utilitati", "Haine", "Sanatate", "Asigurare", "Cumparaturi casa", "Personal", "Educatie", "Cadouri", "Divertisment"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                 selectedItem = items[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setPrompt("Select an option");
             }
         });
     }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".CategoryReports"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rapoarte categorii"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="100dp"
+        app:contentPadding="12dp"
+        app:cardBackgroundColor="#5A5A93"
+        app:cardCornerRadius="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Spinner
+                android:id="@+id/reports_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:popupBackground="#7474BD" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <FrameLayout
+        android:id="@+id/reportContainer"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="80dp">
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:visibility="visible" />
+
+    </FrameLayout>
+
+</LinearLayout>

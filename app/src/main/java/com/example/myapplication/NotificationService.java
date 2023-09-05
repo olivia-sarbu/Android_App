@@ -24,7 +24,7 @@ public class NotificationService extends Service {
     Timer timer ;
     TimerTask timerTask ;
     String TAG = "Timers" ;
-    int Your_X_SECS = 5 ;
+
     @Override
     public IBinder onBind (Intent arg0) {
         return null;
@@ -40,6 +40,7 @@ public class NotificationService extends Service {
     public void onCreate () {
         Log. e ( TAG , "onCreate" ) ;
     }
+
     @Override
     public void onDestroy () {
         Log. e ( TAG , "onDestroy" ) ;
@@ -48,11 +49,13 @@ public class NotificationService extends Service {
     }
 
     final Handler handler = new Handler() ;
+
     public void startTimer () {
         timer = new Timer() ;
         initializeTimerTask() ;
         timer.schedule( timerTask , 10000 , 24*60*60*1000) ;
     }
+
     public void stopTimerTask () {
         if ( timer != null ) {
             timer .cancel() ;

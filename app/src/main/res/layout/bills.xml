@@ -5,8 +5,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background_color">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Facturi"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"/>
+
     <View
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:id="@+id/refresh_page"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -15,7 +25,7 @@
         android:background="@drawable/baseline_refresh_24" />
 
     <androidx.core.widget.NestedScrollView
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_width="match_parent"

@@ -40,8 +40,13 @@
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar"/>
         <activity
-            android:name=".DashboardActivity"
-            android:exported="false" />
+            android:name=".PasswordForgotten"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
+        <activity
+            android:name=".CategoryReports"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
         <activity
             android:name=".Register"
             android:exported="false"

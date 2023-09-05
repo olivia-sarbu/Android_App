@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -70,10 +69,8 @@ public class Register extends AppCompatActivity {
 
                 if (email.trim().isEmpty()) {
                     Toast.makeText(Register.this, "Introduceti un email", Toast.LENGTH_SHORT).show();
-                    return;
                 }else if (password.trim().isEmpty()) {
                     Toast.makeText(Register.this, "Introduceti o parola", Toast.LENGTH_SHORT).show();
-                    return;
                 }else if(!email.matches(patternEmail)) {
                     editTextEmail.setError("Introduceti un email valid!");
                 }else if(!password.equals(confPassword))
@@ -92,7 +89,6 @@ public class Register extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
                                     } else {
-                                        // If sign in fails, display a message to the user.
                                         Toast.makeText(Register.this, "Inregistrare esuata.",
                                                 Toast.LENGTH_SHORT).show();
                                     }

@@ -1,15 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Add other theme attributes here if needed -->
-        <item name="android:editTextStyle">@style/NoEditTextHighlight</item>
-    </style>
-
-    <style name="NoEditTextHighlight" parent="@android:style/Widget.EditText">
-        <item name="android:textCursorDrawable">@null</item>
-        <item name="android:textSelectHandle">@null</item>
-        <item name="android:textSelectHandleLeft">@null</item>
-        <item name="android:textSelectHandleRight">@null</item>
-    </style>
 
 </resources>

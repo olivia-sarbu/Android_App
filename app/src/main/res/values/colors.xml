@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="chirie">#00cccc</color>
-    <color name="transport">#0000ff</color>
-    <color name="mancare">#00cc00</color>
-    <color name="utilitati">#999999</color>
-    <color name="haine">#cc0000</color>
-    <color name="sanatate">#ff00ff</color>
-    <color name="asigurare">#ffff00	</color>
-    <color name="cumparaturi_casa">#ff9900</color>
-    <color name="personal">#800080</color>
-    <color name="educatie">#000066</color>
-    <color name="cadouri">#660000</color>
-    <color name="divertisment">#006600</color>
 
     <color name="background_color">#474787</color>
     <color name="components_color">#AAABB8</color>

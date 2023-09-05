@@ -4,12 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,5 +65,4 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.MyView
             prioritate=itemView.findViewById(R.id.prioritate_green);
         }
     }
-
 }
