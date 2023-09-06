@@ -115,6 +115,8 @@ public class Savings extends AppCompatActivity {
         pieChart.invalidate();
     }
 
+
+
     private void saveData(int currentEconomii, String goalValue) {
         //String currentUserId = FirebaseAuth.getInstance().getUid();
         //String sharedPreferencesKey = "MyPrefs_" + currentUserId;
