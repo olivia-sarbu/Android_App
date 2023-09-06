@@ -63,8 +63,8 @@ public class NotificationService extends Service {
         }
     }
 
-    int notificationHour = 9;
-    int notificationMinute = 0;
+    int notificationHour = 23;
+    int notificationMinute = 26;
 
     public void initializeTimerTask () {
 

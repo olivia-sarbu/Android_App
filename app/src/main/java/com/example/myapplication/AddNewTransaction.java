@@ -75,7 +75,7 @@ public class AddNewTransaction extends AppCompatActivity {
                 String suma = binding.sumaBani.getText().toString().trim();
                 String categorie = selectedItem;
                 String nota = binding.nota.getText().toString().trim();
-                String data=binding.data.getText().toString().trim();
+                String data = binding.data.getText().toString().trim();
                 if (suma.length() <= 0) {
                     return;
                 }
@@ -83,32 +83,40 @@ public class AddNewTransaction extends AppCompatActivity {
                     Toast.makeText(AddNewTransaction.this, "Selecteaza tip tranzactie", Toast.LENGTH_SHORT).show();
                 }
 
-                String id = UUID.randomUUID().toString();
-                Map<String, Object> tranzactii = new HashMap<>();
-                tranzactii.put("id", id);
-                tranzactii.put("suma", suma);
-                tranzactii.put("categorie", categorie);
-                tranzactii.put("nota", nota);
-                tranzactii.put("tip", tip_tranzactie);
-                tranzactii.put("data", data);
-                db.collection("Cheltuieli").document(id)
-                        .set(tranzactii)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(AddNewTransaction.this, "Adaugat", Toast.LENGTH_SHORT).show();
-                                binding.categorieSpinner.setSelection(-1);
-                                binding.sumaBani.setText("");
-                                binding.nota.setText("");
-                                binding.data.setText("");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(AddNewTransaction.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                FirebaseUser currentUser = auth.getCurrentUser();
+
+                if (currentUser != null) {
+                    String currentUserId = currentUser.getUid();
+
+                    String id = UUID.randomUUID().toString();
+                    Map<String, Object> tranzactii = new HashMap<>();
+                    tranzactii.put("id", id);
+                    tranzactii.put("suma", suma);
+                    tranzactii.put("categorie", categorie);
+                    tranzactii.put("nota", nota);
+                    tranzactii.put("tip", tip_tranzactie);
+                    tranzactii.put("data", data);
+                    tranzactii.put("id", currentUserId);
+                    db.collection("Cheltuieli").document(id)
+                            .set(tranzactii)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(AddNewTransaction.this, "Adaugat", Toast.LENGTH_SHORT).show();
+                                    binding.categorieSpinner.setSelection(-1);
+                                    binding.sumaBani.setText("");
+                                    binding.nota.setText("");
+                                    binding.data.setText("");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(AddNewTransaction.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
             }
         });
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import com.example.myapplication.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     ArrayList<ExpenseModel> transModelArrayList;
     ExpensesAdapter adapter;
-    int totalVenit=0, totalCheltuieli=0;
+    int totalVenit = 0, totalCheltuieli = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        firebaseFirestore=FirebaseFirestore.getInstance();
-        firebaseAuth=FirebaseAuth.getInstance();
-        transModelArrayList=new ArrayList<>();
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        transModelArrayList = new ArrayList<>();
 
         binding.recycler.setLayoutManager(new LinearLayoutManager(this));
         binding.recycler.setHasFixedSize(true);
@@ -37,10 +38,9 @@ public class MainActivity extends AppCompatActivity {
         binding.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try{
+                try {
                     startActivity(new Intent(MainActivity.this, AddNewTransaction.class));
-                }
-                catch(Exception e){
+                } catch (Exception e) {
 
                 }
             }
@@ -51,10 +51,9 @@ public class MainActivity extends AppCompatActivity {
         binding.facturiBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try{
+                try {
                     startActivity(new Intent(MainActivity.this, Bills.class));
-                }
-                catch (Exception e){
+                } catch (Exception e) {
 
                 }
             }
@@ -63,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
         binding.refreshPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try{
+                try {
                     startActivity(new Intent(MainActivity.this, MainActivity.class));
                     finish();
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
             }
@@ -75,10 +74,9 @@ public class MainActivity extends AppCompatActivity {
         binding.economiiBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try{
+                try {
                     startActivity(new Intent(MainActivity.this, Savings.class));
-                }
-                catch (Exception e){
+                } catch (Exception e) {
 
                 }
             }
@@ -87,10 +85,9 @@ public class MainActivity extends AppCompatActivity {
         binding.setariBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try{
+                try {
                     startActivity(new Intent(MainActivity.this, Settings.class));
-                }
-                catch (Exception e){
+                } catch (Exception e) {
 
                 }
             }
@@ -99,10 +96,9 @@ public class MainActivity extends AppCompatActivity {
         binding.reportsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try{
+                try {
                     startActivity(new Intent(MainActivity.this, CategoryReports.class));
-                }
-                catch (Exception e){
+                } catch (Exception e) {
 
                 }
             }
@@ -111,39 +107,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        FirebaseFirestore.getInstance().collection("Cheltuieli")
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            String currentUserId = currentUser.getUid();
+            FirebaseFirestore.getInstance().collection("Cheltuieli")
+                    .whereEqualTo("id", currentUserId)
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
 
-                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
-                        ExpenseModel model = new ExpenseModel(
-                                doc.getString("categorie"),
-                                doc.getString("id"),
-                                doc.getString("suma"),
-                                doc.getString("tip"),
-                                doc.getString("data"),
-                                doc.getString("nota"));
-                        int suma = Integer.parseInt(doc.getString("suma"));
-                        if(doc.getString("tip").equals("Cheltuiala")){
-                            totalCheltuieli=totalCheltuieli+suma;
-                        }else if(doc.getString("tip").equals("Venit")){
-                            totalVenit=totalVenit+suma;
+                        for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                            ExpenseModel model = new ExpenseModel(
+                                    doc.getString("categorie"),
+                                    doc.getString("id"),
+                                    doc.getString("suma"),
+                                    doc.getString("tip"),
+                                    doc.getString("data"),
+                                    doc.getString("nota"));
+                            int suma = Integer.parseInt(doc.getString("suma"));
+                            if (doc.getString("tip").equals("Cheltuiala")) {
+                                totalCheltuieli = totalCheltuieli + suma;
+                            } else if (doc.getString("tip").equals("Venit")) {
+                                totalVenit = totalVenit + suma;
+                            }
+                            transModelArrayList.add(model);
                         }
-                        transModelArrayList.add(model);
-                    }
 
-                    binding.totalVenit.setText(String.valueOf(totalVenit));
-                    binding.totalChetuieli.setText(String.valueOf(totalCheltuieli));
-                    binding.balantaBani.setText(String.valueOf(totalVenit-totalCheltuieli));
+                        binding.totalVenit.setText(String.valueOf(totalVenit));
+                        binding.totalChetuieli.setText(String.valueOf(totalCheltuieli));
+                        binding.balantaBani.setText(String.valueOf(totalVenit - totalCheltuieli));
 
-                    if (adapter == null) {
-                        adapter = new ExpensesAdapter(MainActivity.this, transModelArrayList);
-                        binding.recycler.setAdapter(adapter);
-                    } else {
-                        adapter.updateData(transModelArrayList);
-                    }
-                })
-                .addOnFailureListener(e -> {
-                });
+                        if (adapter == null) {
+                            adapter = new ExpensesAdapter(MainActivity.this, transModelArrayList);
+                            binding.recycler.setAdapter(adapter);
+                        } else {
+                            adapter.updateData(transModelArrayList);
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                    });
+        }
     }
 }
+

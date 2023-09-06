@@ -17,6 +17,7 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -115,6 +116,8 @@ public class Savings extends AppCompatActivity {
     }
 
     private void saveData(int currentEconomii, String goalValue) {
+        //String currentUserId = FirebaseAuth.getInstance().getUid();
+        //String sharedPreferencesKey = "MyPrefs_" + currentUserId;
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("economii", currentEconomii);

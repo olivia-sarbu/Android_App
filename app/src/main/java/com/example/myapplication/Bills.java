@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.myapplication.databinding.BillsBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -63,39 +64,46 @@ public class Bills extends AppCompatActivity {
 
     private void getData() {
         String id = FirebaseAuth.getInstance().getUid();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
 
-        FirebaseFirestore.getInstance().collection("Facturi")
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
+        if (currentUser != null) {
+            String currentUserId = currentUser.getUid();
 
-                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
-                        BillModel model = new BillModel(
-                                doc.getString("id"),
-                                doc.getString("categorie_factura"),
-                                doc.getString("suma_plata"),
-                                doc.getString("termen_limita"),
-                                doc.getString("data_notificare"));
+            FirebaseFirestore.getInstance().collection("Facturi")
+                    .whereEqualTo("id", currentUserId)
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
 
-                        billModelList.add(model);
-                    }
+                        for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                            BillModel model = new BillModel(
+                                    doc.getString("id"),
+                                    doc.getString("categorie_factura"),
+                                    doc.getString("suma_plata"),
+                                    doc.getString("termen_limita"),
+                                    doc.getString("data_notificare"));
 
-                    if (billAdapter == null) {
-                        billAdapter = new BillAdapter(Bills.this, billModelList);
-                        binding.billsRecycler.setAdapter(billAdapter);
+                            billModelList.add(model);
+                        }
 
-                    } else {
-                        billAdapter.notifyDataSetChanged();
-                    }
-                })
-                .addOnFailureListener(e -> {
-                });
+                        if (billAdapter == null) {
+                            billAdapter = new BillAdapter(Bills.this, billModelList);
+                            binding.billsRecycler.setAdapter(billAdapter);
+
+                        } else {
+                            billAdapter.notifyDataSetChanged();
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                    });
+        }
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        startService( new Intent( this, NotificationService.class )) ;
-    }
+        @Override
+        protected void onStop () {
+            super.onStop();
+            startService(new Intent(this, NotificationService.class));
+        }
 }
 
 

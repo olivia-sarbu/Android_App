@@ -135,24 +135,28 @@ public class CategoryReports extends AppCompatActivity {
     }
 
     private void getData() {
-        String id = FirebaseAuth.getInstance().getUid();
+        String currentUserId = FirebaseAuth.getInstance().getUid();
 
-        FirebaseFirestore.getInstance().collection("Cheltuieli")
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
-                        ExpenseModel model = new ExpenseModel(
-                                doc.getString("categorie"),
-                                doc.getString("id"),
-                                doc.getString("suma"),
-                                doc.getString("tip"),
-                                doc.getString("data"),
-                                doc.getString("nota"));
-                        transModelArrayList.add(model);
-                    }
-                })
-                .addOnFailureListener(e -> {
-                });
+        if (currentUserId != null) {
+
+            FirebaseFirestore.getInstance().collection("Cheltuieli")
+                    .whereEqualTo("id", currentUserId)
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                            ExpenseModel model = new ExpenseModel(
+                                    doc.getString("categorie"),
+                                    doc.getString("id"),
+                                    doc.getString("suma"),
+                                    doc.getString("tip"),
+                                    doc.getString("data"),
+                                    doc.getString("nota"));
+                            transModelArrayList.add(model);
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                    });
+        }
     }
 
     private ArrayList<ExpenseModel> filterTransactionsByCategory(String selectedItem) {
