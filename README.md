@@ -8,7 +8,7 @@ Aplicația Budget Track a fost creată în Android Studio, urmărind o bună pla
 4. Pentru testare se poate folosi un dispozitiv fizic conectat prin cablu USB la PC/laptop, dar se poate folosi și emulatorul
 furnizat de Android Studio IDE
 
-5. Pentru instalarea proiectului se descarcă arhiva de pe github și se dezarhivează
+5. Pentru instalarea proiectului se descarcă arhiva de pe github de la adresa https://github.com/olivia-sarbu/Android_App.git și se dezarhivează
 6. În Android Studio se deschide proiectul de la opțiunea "Open an existing Android project"
 7. În cazul în care se dorește rularea aplicației într-un emulator, la opțiunea Tools se selectează Device Manager și se alege un emulator.
 
