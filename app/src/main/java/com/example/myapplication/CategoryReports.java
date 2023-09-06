@@ -28,10 +28,10 @@ import java.util.List;
 
 public class CategoryReports extends AppCompatActivity {
 
-    String selectedItem;
-    LineChart lineChart;
-    ArrayList<ExpenseModel> transModelArrayList;
-    CategoryReportsBinding binding;
+    public String selectedItem;
+    public LineChart lineChart;
+    public ArrayList<ExpenseModel> transModelArrayList;
+    public CategoryReportsBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

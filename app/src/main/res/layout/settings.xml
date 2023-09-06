@@ -156,7 +156,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:padding="12dp"
-                        android:src="@drawable/baseline_privacy_tip_24"
+                        android:src="@drawable/baseline_security_24"
                         android:background="@drawable/round_back_privacy"/>
 
                     <TextView
@@ -164,7 +164,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Cont privat"
+                        android:text="Securitate"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
                         android:layout_toEndOf="@+id/account_privacy"/>

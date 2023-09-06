@@ -111,8 +111,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        String id = FirebaseAuth.getInstance().getUid();
-
         FirebaseFirestore.getInstance().collection("Cheltuieli")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,14 +17,12 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 public class Login extends AppCompatActivity {
 
-    TextInputEditText editTextEmail, editTextPassword;
-    Button buttonLogin;
-    FirebaseAuth mAuth;
-    ProgressBar progressBar;
-    TextView textView, forgotPassword;
+    public TextInputEditText editTextEmail, editTextPassword;
+    public Button buttonLogin;
+    public FirebaseAuth mAuth;
+    public TextView textView, forgotPassword;
 
     @Override
     public void onStart() {
@@ -47,7 +44,6 @@ public class Login extends AppCompatActivity {
         editTextEmail=findViewById(R.id.email);
         editTextPassword=findViewById(R.id.password);
         buttonLogin=findViewById(R.id.btn_login);
-        progressBar=findViewById(R.id.progressBar);
         textView=findViewById(R.id.registerNow);
         forgotPassword=findViewById(R.id.forgot_Password);
 
@@ -65,7 +61,6 @@ public class Login extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
                 String email, password;
                 email=String.valueOf(editTextEmail.getText()).trim();
                 password=String.valueOf(editTextPassword.getText()).trim();
@@ -84,7 +79,6 @@ public class Login extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(), "Autentificare reusita.", Toast.LENGTH_SHORT).show();
                                     Intent intent=new Intent(getApplicationContext(), MainActivity.class);

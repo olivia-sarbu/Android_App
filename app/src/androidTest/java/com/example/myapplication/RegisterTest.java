@@ -30,14 +30,12 @@ public class RegisterTest {
         Espresso.onView(ViewMatchers.withText("Introduceti o parola")).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
-
     @Test
     public void testInvalidEmailValidation() {
         Espresso.onView(ViewMatchers.withId(R.id.email)).perform(ViewActions.typeText("invalidemail"));
         Espresso.onView(ViewMatchers.withId(R.id.btn_register)).perform(ViewActions.click());
         Espresso.onView(ViewMatchers.withId(R.id.email)).check(ViewAssertions.matches(ViewMatchers.hasErrorText("Introduceti un email valid!")));
     }
-
 
     @Test
     public void testPasswordMismatchValidation() {

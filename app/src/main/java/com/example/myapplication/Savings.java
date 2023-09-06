@@ -20,8 +20,6 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.eazegraph.lib.charts.BarChart;
-
 import java.util.ArrayList;
 
 public class Savings extends AppCompatActivity {
@@ -29,7 +27,6 @@ public class Savings extends AppCompatActivity {
     SavingsBinding binding;
     EditText tinta_economii, economii_curente;
     PieChart pieChart;
-    BarChart barChart;
     int economii=0;
     DatabaseReference databaseReference;
     @Override
